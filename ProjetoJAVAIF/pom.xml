@@ -1,0 +1,44 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.progetoif.gerenciador</groupId>
+  <artifactId>ProjetoJAVAIF</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+  <description>percistencia de dados</description>
+  
+    <properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.souce>19</maven.compiler.souce>
+		<maven.compiler.target>19</maven.compiler.target>
+		<exec.mainClass>Principal.Principal</exec.mainClass>
+	</properties>
+     
+   <build>
+	   <plugins>
+		   <plugin>
+			   <groupId>org.apache.maven.plugins</groupId>
+			   <artifactId>maven-jar-plugin</artifactId>
+			   <configuration>
+				   <archive>
+					   <manifest>
+						   <addClasspath>true</addClasspath>
+						   <mainClass>Principal.Principal</mainClass>
+					   </manifest>
+				   </archive>
+			   </configuration>
+		   </plugin>
+	   </plugins>
+   </build>
+  
+ <dependencies> 
+   <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+<dependency>
+    <groupId>com.google.code.gson</groupId>
+    <artifactId>gson</artifactId>
+    <version>2.11.0</version>
+</dependency>
+</dependencies>
+
+</project>
