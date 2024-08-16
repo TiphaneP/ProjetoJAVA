@@ -30,6 +30,7 @@ public class Produto {
     public double getPreco() {
         return preco;
     }
+  
 
     public int getQuantidadeEmEstoque() {
         return quantidadeEmEstoque;
@@ -47,23 +48,47 @@ public class Produto {
         this.quantidadeEmEstoque = quantidadeEmEstoque;
     }
 
-    public void reduzirEstoque(int quantidade) {
-        this.quantidadeEmEstoque -= quantidade;
-        this.quantidadeVendida += quantidade;
-    }
 
     @Override
     public String toString() {
         return id + ";" + nome + ";" + preco + ";" + quantidadeEmEstoque + ";" + estoqueMinimo;
     }
 
-	public double getQuantidadeCompra() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+    public int getQuantidadeCompra() {
+        return quantidadeVendida;
+    }
 
-	public void reduzirEstoque(double quantidadeCompra) {
-		// TODO Auto-generated method stub
-		
-	}
+
+    public void reduzirEstoque(int quantidadeCompra) {
+        if (quantidadeEmEstoque >= quantidadeCompra) {
+            quantidadeEmEstoque -= quantidadeCompra;
+            quantidadeVendida += quantidadeCompra;  // Aumenta a contagem de quantidade vendida
+        } else {
+            throw new IllegalArgumentException("Quantidade em estoque insuficiente.");
+        }
+    }
+
+    public void setPreco(double preco) {
+        this.preco = preco;
+    }
+
+
+
+    public int getEstoqueMinimo() {
+        return estoqueMinimo;
+    }
+
+
+    public void setEstoqueMinimo(int estoqueMinimo) {
+        this.estoqueMinimo = estoqueMinimo;
+    }
+
+    public void setNome(String nome) {
+        if (nome == null || nome.trim().isEmpty()) {
+            throw new IllegalArgumentException("Nome do produto não pode ser vazio ou nulo.");
+        }
+        this.nome = nome;
+    }
+
+	
 }

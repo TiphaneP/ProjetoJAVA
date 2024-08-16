@@ -30,7 +30,7 @@ public class ProdutoDAO {
             return new ArrayList<>();
         }
         try (Reader reader = new FileReader(FILE_NAME)) {
-            Type produtoListType = new TypeToken<ArrayList<Produto>>() {}.getType();
+            Type produtoListType = new TypeToken<ArrayList<Produto>>(){}.getType();
             return gson.fromJson(reader, produtoListType);
         } catch (IOException e) {
             e.printStackTrace();
@@ -43,15 +43,18 @@ public class ProdutoDAO {
         try (Writer writer = new FileWriter(FILE_NAME)) {
             for (Produto p : produtos) {
                 if (p.getId() == produto.getId()) {
-                    writer.write(gson.toJson(produto) + "\n");
-                } else {
-                    writer.write(gson.toJson(p) + "\n");
+                    p.setNome(produto.getNome());
+                    p.setPreco(produto.getPreco());
+                    p.setQuantidadeEmEstoque(produto.getQuantidadeEmEstoque());
+                    p.setEstoqueMinimo(produto.getEstoqueMinimo());
                 }
             }
+            gson.toJson(produtos, writer);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 
     public void removerProduto(int id) {
         List<Produto> produtos = listarProdutos();

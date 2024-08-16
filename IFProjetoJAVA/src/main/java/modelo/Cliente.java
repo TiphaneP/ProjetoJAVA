@@ -1,11 +1,14 @@
 package modelo;
 
+import java.util.List;
+
 public class Cliente {
     private int id;
     private String nome;
     private String endereco;
     private String telefone;
     private String email;
+
 
     public Cliente(String nome, String endereco, String telefone, String email) {
         this.id = gerarIdUnico();
@@ -70,12 +73,13 @@ public class Cliente {
     public void setId(int idAtualizar) {
         this.id = idAtualizar;
     }
-
-	public String getTotalGasto() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+    
+    public double getTotalGasto(List<Venda> listaDeVendas) {
+        return listaDeVendas.stream()
+            .filter(venda -> venda.getCliente().equals(this))
+            .mapToDouble(Venda::getValorTotal)
+            .sum();
+    }
 
 	
 }

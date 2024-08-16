@@ -8,6 +8,8 @@ public class Main {
     public static void main(String[] args) {
 
         Loja minhaLoja = new Loja();
+        minhaLoja.carregarDados(); 
+        
         Scanner leitor = new Scanner(System.in);
         ProdutoDAO produtoDAO = new ProdutoDAO();
         ClienteDAO clienteDAO = new ClienteDAO();
@@ -21,7 +23,7 @@ public class Main {
 
             System.out.println("Senha: ");
             senha = leitor.nextLine();
-        } while (!(user.equals("root")) || !(senha.equals("1234")));
+        } while (!(user.equals("root")) && !(senha.equals("1234")));
 
         while (true) {
             System.out.println("Menu:");
@@ -58,7 +60,7 @@ public class Main {
                 case 5:
                 	 Cliente melhorCliente = minhaLoja.melhorCliente();
                 	    if (melhorCliente != null) {
-                	        System.out.println("Melhor cliente: " + melhorCliente.getNome() + ", Total gasto: R$ " + melhorCliente.getTotalGasto());
+                	        System.out.println("Melhor cliente: " + melhorCliente.getNome() + ", Total gasto: R$ " + melhorCliente.getTotalGasto(null));
                 	    } else {
                 	        System.out.println("Nenhum cliente registrado.");
                 	    }

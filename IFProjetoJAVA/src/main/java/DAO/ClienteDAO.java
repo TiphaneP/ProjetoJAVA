@@ -38,19 +38,18 @@ public class ClienteDAO {
         }
     }
 
-    public void atualizarCliente(Cliente cliente) {
-        List<Cliente> clientes = listarClientes();
-        try (Writer writer = new FileWriter(FILE_NAME)) {
-            for (Cliente c : clientes) {
-                if (c.getId() == cliente.getId()) {
-                    writer.write(gson.toJson(cliente) + "\n");
-                } else {
-                    writer.write(gson.toJson(c) + "\n");
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void atualizarCliente(Cliente clienteAtualizado) {
+    	List<Cliente> clientes = listarClientes(); 
+    	for (Cliente cliente : clientes) {
+    		if (cliente.getId() == clienteAtualizado.getId()) {
+    			cliente.setNome(clienteAtualizado.getNome());
+    			cliente.setEndereco(clienteAtualizado.getEndereco());
+    			cliente.setTelefone(clienteAtualizado.getTelefone());
+    			cliente.setEmail(clienteAtualizado.getEmail());
+    			break; 
+    		}
+    	}
+
     }
 
     public void removerCliente(int id) {
